@@ -5,7 +5,6 @@ function AnimeDetail() {
     const {animeID}=useParams()
     const url=`https://api.jikan.moe/v4/anime/${animeID}/full`;
     const {post,isLoading,isError}=useFetch(url)
-    console.log(post)
     return <>
     {isLoading&&<div className="vh-100  d-flex"><div className="m-auto"><div className="loader"></div></div></div>}
     {isError&&<div className="vh-100  d-flex">

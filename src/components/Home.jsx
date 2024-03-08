@@ -1,39 +1,20 @@
 import {  useEffect, useLayoutEffect, useState } from "react";
 import { useFetch } from "../state/useFetch";
 import { useNavigate}from"react-router-dom"
-import {gsap} from"gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {Link}from"react-router-dom"
 
 function Home() {
     const navigate=useNavigate()
     const {post,isError,isLoading}=useFetch('https://api.jikan.moe/v4/anime?limit=20')
     
-    gsap.registerPlugin(ScrollTrigger)
-    useLayoutEffect(()=>{
-        const ctx=gsap.context(()=>{
-            const card=gsap.utils.toArray('.card').forEach(el=>{
-                gsap.to(el,{y:-100,scrollTrigger:{
-                    trigger:el,
-                    scrub:1,
-                    start:'top top',
-                }})
-            })
-         
-        },'.cards-container')
-        return()=> ctx.revert()
-    },[])
+   
     const handleSearch=(e)=>{
         const value=e.target.value;
-        console.log(value,e)
-
         if(e.key==="Enter"){
-
             if(value!==''){
                 navigate(`/search/${value}`)
             }
         }
-       
     }
     return <>
     <div className="container-fluid p-3">

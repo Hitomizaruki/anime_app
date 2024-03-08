@@ -16,7 +16,6 @@ export const useFetch=(url)=>{
 
             setState({post:null,isError:false,isLoading:true})
             const response = await axios.get(`${url}`);
-            console.log(response.data);
             setState({...state,post:response.data,isLoading:false})
 
         } catch (error) {
